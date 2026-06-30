@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --cor-primaria: #8B0000;
+    --cor-secundaria: #1a1a1a;
+    --cor-destaque: #b22222;
+    --cor-fundo: #f5f5f5;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-fundo);
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+}
+
+.navbar {
+    background-color: var(--cor-secundaria) !important;
+}
+
+.navbar-brand {
+    color: var(--cor-primaria) !important;
+    font-size: 1.5rem;
+}
+
+.card {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.card-header-atletica {
+    background-color: var(--cor-secundaria);
+    color: white;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.card-header-atletica h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.card-header-atletica p {
+    color: #aaa;
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.btn-atletica {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 0.6rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-atletica:hover {
+    background-color: #6a0000;
+    border-color: #6a0000;
+    color: white;
+}
+
+.form-control:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 0.2rem rgba(139,0,0,0.2);
+}
+
+.link-atletica {
+    color: var(--cor-primaria);
+    font-weight: bold;
+}
+
+.link-atletica:hover {
+    color: #6a0000;
+}
+
+.table thead {
+    background-color: var(--cor-secundaria);
+    color: white;
+}
+
+.badge-admin {
+    background-color: var(--cor-primaria);
+}
+
+.alert {
+    border-radius: 8px;
+}
+
+a {
+    text-decoration: none;
+}
