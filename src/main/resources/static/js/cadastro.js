@@ -8,11 +8,13 @@ function cadastrar() {
         return;
     }
 
+    const codigoAdmin = document.getElementById('codigoAdmin').value;
+
     const usuario = {
         nome: nome,
         email: email,
         senha: senha,
-        perfil: 'ATLETA'
+        perfil: codigoAdmin === 'LOUCOUFOP' ? 'ADMIN' : 'ATLETA'
     };
 
     fetch('/usuarios', {
