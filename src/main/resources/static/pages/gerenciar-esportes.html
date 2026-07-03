@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Esportes - Atlética Loucomotiva</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f5f5f5;">
+
+<!-- Navbar - barra de navegação superior -->
+<nav class="navbar navbar-expand-lg px-4 py-3">
+    <a class="navbar-brand" href="dashboard-admin.html">
+        <img src="../images/logo.png" alt="Logo" style="width: 40px; margin-right: 8px;">
+        LOUCOMOTIVA
+    </a>
+    <div class="ms-auto d-flex align-items-center gap-3">
+        <!-- Nome do usuário logado -->
+        <span class="text-white" id="nomeUsuario"></span>
+        <!-- Badge indicando perfil admin -->
+        <span class="badge bg-danger">ADMIN</span>
+        <!-- Botão de logout -->
+        <a href="login.html" onclick="logout()" class="btn btn-outline-light btn-sm">Sair</a>
+    </div>
+</nav>
+
+<div class="container py-4">
+
+    <!-- Cabeçalho da página -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="dashboard-admin.html" class="text-muted text-decoration-none">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </a>
+            <h4 class="fw-bold mb-0 mt-1">Gerenciar Esportes</h4>
+        </div>
+        <!-- Botão para abrir modal de cadastro -->
+        <button onclick="abrirModal()" class="btn btn-atletica">
+            <i class="bi bi-plus-lg"></i> Novo Esporte
+        </button>
+    </div>
+
+    <!-- Tabela de esportes cadastrados -->
+    <div class="card p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <!-- Preenchida dinamicamente pelo gerenciar-esportes.js -->
+                <tbody id="tabelaEsportes">
+                <tr>
+                    <td colspan="3" class="text-center text-muted">Nenhum esporte cadastrado.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de cadastro/edição de esporte -->
+<div class="modal fade" id="modalEsporte" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="modalTitulo">Novo Esporte</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Área para exibir mensagens de erro ou sucesso -->
+                <div id="mensagem"></div>
+
+                <!-- Campo oculto para armazenar o ID ao editar -->
+                <input type="hidden" id="esporteId">
+
+                <!-- Campo de nome -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nome</label>
+                    <input type="text" id="nome" class="form-control" placeholder="Ex: Futsal">
+                </div>
+
+                <!-- Campo de descrição -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Descrição</label>
+                    <textarea id="descricao" class="form-control" rows="3" placeholder="Descreva o esporte..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <!-- Botão de salvar -->
+                <button onclick="salvar()" class="btn btn-atletica">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/gerenciar-esportes.js"></script>
+</body>
+</html>
