@@ -29,7 +29,7 @@ function carregarEsportes() {
 
             // Exibe mensagem se não houver esportes cadastrados
             if (esportes.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="3" class="text-center text-muted">Nenhum esporte cadastrado.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="2" class="text-center text-muted">Nenhum esporte cadastrado.</td></tr>';
                 return;
             }
 
@@ -37,7 +37,6 @@ function carregarEsportes() {
             tbody.innerHTML = esportes.map(e => `
                 <tr>
                     <td>${e.nome}</td>
-                    <td>${e.descricao || '—'}</td>
                     <td>
                         <button onclick="editar('${e.id}', '${e.nome}', '${e.descricao || ''}')" class="btn btn-sm btn-outline-secondary me-1">
                             <i class="bi bi-pencil"></i> Editar
