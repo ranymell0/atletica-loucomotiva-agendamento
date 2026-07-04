@@ -1,7 +1,7 @@
 package br.ufop.agendamento.controller;
 
 import br.ufop.agendamento.model.Usuario;
-import br.ufop.agendamento.repository.UsuarioRepository;
+import br.ufop.agendamento.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,46 +9,48 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+// Controller responsável pelas rotas de usuários
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
+    // Injeção do serviço de usuários
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
+    // Retorna todos os usuários
     @GetMapping
     public List<Usuario> listar() {
-        return usuarioRepository.findAll();
+        return usuarioService.listarTodos();
     }
 
+    // Retorna um usuário pelo ID
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable UUID id) {
-        return usuarioRepository.findById(id)
+        return usuarioService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Cria um novo usuário
     @PostMapping
     public Usuario criar(@RequestBody Usuario usuario) {
-        return usuarioRepository.save(usuario);
+        return usuarioService.salvar(usuario);
     }
 
+    // Atualiza um usuário existente
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable UUID id, @RequestBody Usuario usuarioAtualizado) {
-        return usuarioRepository.findById(id).map(usuario -> {
-            usuario.setNome(usuarioAtualizado.getNome());
-            usuario.setEmail(usuarioAtualizado.getEmail());
-            usuario.setSenha(usuarioAtualizado.getSenha());
-            usuario.setPerfil(usuarioAtualizado.getPerfil());
-            return ResponseEntity.ok(usuarioRepository.save(usuario));
-        }).orElse(ResponseEntity.notFound().build());
+        return usuarioService.atualizar(id, usuarioAtualizado)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
+    // Remove um usuário pelo ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable UUID id) {
-        return usuarioRepository.findById(id).map(usuario -> {
-            usuarioRepository.delete(usuario);
-            return ResponseEntity.ok().<Void>build();
-        }).orElse(ResponseEntity.notFound().build());
+        return usuarioService.deletar(id)
+                ? ResponseEntity.ok().<Void>build()
+                : ResponseEntity.notFound().build();
     }
 }
