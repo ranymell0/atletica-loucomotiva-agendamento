@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Agendamento - Atlética Loucomotiva</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f5f5f5;">
+
+<!-- Navbar - barra de navegação superior -->
+<nav class="navbar navbar-expand-lg px-4 py-3">
+    <a class="navbar-brand" href="dashboard.html">
+        <img src="../images/logo.png" alt="Logo" style="width: 40px; margin-right: 8px;">
+        LOUCOMOTIVA
+    </a>
+    <div class="ms-auto d-flex align-items-center gap-3">
+        <!-- Nome do usuário logado -->
+        <span class="text-white" id="nomeUsuario"></span>
+        <!-- Botão de logout -->
+        <a href="login.html" onclick="logout()" class="btn btn-outline-light btn-sm">Sair</a>
+    </div>
+</nav>
+
+<div class="container py-4">
+
+    <!-- Cabeçalho da página -->
+    <div class="mb-4">
+        <a href="dashboard.html" class="text-muted text-decoration-none">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+        <h4 class="fw-bold mb-0 mt-1">Novo Agendamento</h4>
+    </div>
+
+    <div class="card p-4">
+
+        <!-- Área para exibir mensagens de erro ou sucesso -->
+        <div id="mensagem"></div>
+
+        <!-- Seleção do tipo de agendamento -->
+        <div class="mb-4">
+            <label class="form-label fw-bold">Tipo de Agendamento</label>
+            <div class="d-flex gap-3">
+                <!-- Horário pré-definido -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo" id="tipoPredefinido" value="PREDEFINIDO" checked onchange="alterarTipo()">
+                    <label class="form-check-label" for="tipoPredefinido">Horário Pré-definido</label>
+                </div>
+                <!-- Horário livre -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo" id="tipoLivre" value="LIVRE" onchange="alterarTipo()">
+                    <label class="form-check-label" for="tipoLivre">Horário Livre</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+
+            <!-- Seleção do esporte -->
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Esporte</label>
+                <select id="esporte" class="form-select" onchange="carregarEspacos()">
+                    <option value="">Selecione um esporte</option>
+                </select>
+            </div>
+
+            <!-- Seleção do espaço -->
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Espaço</label>
+                <select id="espaco" class="form-select" onchange="carregarHorarios()">
+                    <option value="">Selecione um espaço</option>
+                </select>
+            </div>
+
+            <!-- Seleção da data -->
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Data</label>
+                <input type="date" id="data" class="form-control" onchange="carregarHorarios()">
+            </div>
+
+            <!-- Seleção do horário pré-definido -->
+            <div class="col-md-6" id="campoHorarioPredefinido">
+                <label class="form-label fw-bold">Horário Disponível</label>
+                <select id="horario" class="form-select">
+                    <option value="">Selecione um horário</option>
+                </select>
+            </div>
+
+            <!-- Campos de horário livre -->
+            <div class="col-md-3 d-none" id="campoHoraInicio">
+                <label class="form-label fw-bold">Hora Início</label>
+                <input type="time" id="horaInicio" class="form-control">
+            </div>
+
+            <div class="col-md-3 d-none" id="campoHoraFim">
+                <label class="form-label fw-bold">Hora Fim</label>
+                <input type="time" id="horaFim" class="form-control">
+            </div>
+
+        </div>
+
+        <!-- Botão de confirmar agendamento -->
+        <div class="mt-4">
+            <button onclick="agendar()" class="btn btn-atletica">
+                <i class="bi bi-calendar-check"></i> Confirmar Agendamento
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script de agendamento -->
+<script src="../js/agendamento.js"></script>
+</body>
+</html>
