@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Agendamentos - Atlética Loucomotiva</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f5f5f5;">
+
+<!-- Navbar - barra de navegação superior -->
+<nav class="navbar navbar-expand-lg px-4 py-3">
+    <a class="navbar-brand" href="dashboard-admin.html">
+        <img src="../images/logo.png" alt="Logo" style="width: 40px; margin-right: 8px;">
+        LOUCOMOTIVA
+    </a>
+    <div class="ms-auto d-flex align-items-center gap-3">
+        <!-- Nome do usuário logado -->
+        <span class="text-white" id="nomeUsuario"></span>
+        <!-- Badge indicando perfil admin -->
+        <span class="badge bg-danger">ADMIN</span>
+        <!-- Botão de logout -->
+        <a href="login.html" onclick="logout()" class="btn btn-outline-light btn-sm">Sair</a>
+    </div>
+</nav>
+
+<div class="container py-4">
+
+    <!-- Cabeçalho da página -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="dashboard-admin.html" class="text-muted text-decoration-none">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </a>
+            <h4 class="fw-bold mb-0 mt-1">Gerenciar Agendamentos</h4>
+        </div>
+
+        <!-- Filtro por status -->
+        <select id="filtroStatus" class="form-select" style="width: 180px;" onchange="filtrarAgendamentos()">
+            <option value="TODOS">Todos</option>
+            <option value="PENDENTE">Pendentes</option>
+            <option value="CONFIRMADO">Confirmados</option>
+            <option value="CANCELADO">Cancelados</option>
+        </select>
+    </div>
+
+    <!-- Tabela de agendamentos -->
+    <div class="card p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                <tr>
+                    <th>Atleta</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Esporte</th>
+                    <th>Espaço</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <!-- Preenchida dinamicamente pelo gerenciar-agendamentos.js -->
+                <tbody id="tabelaAgendamentos">
+                <tr>
+                    <td colspan="8" class="text-center text-muted">Nenhum agendamento encontrado.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script de gerenciamento de agendamentos -->
+<script src="../js/gerenciar-agendamentos.js"></script>
+</body>
+</html>
