@@ -60,7 +60,7 @@ function renderizarTabela(agendamentos) {
         <tr>
             <td>${a.usuario.nome}</td>
             <td>${formatarData(a.data)}</td>
-            <td>${a.horaInicio} - ${a.horaFim}</td>
+            <td>${formatarHora(a.horaInicio)} - ${formatarHora(a.horaFim)}</td>
             <td>${a.esporte.nome}</td>
             <td>${a.espaco.nome}</td>
             <td>${a.tipo === 'PREDEFINIDO'
@@ -112,6 +112,11 @@ function cancelar(id) {
 function formatarData(data) {
     const [ano, mes, dia] = data.split('-');
     return `${dia}/${mes}/${ano}`;
+}
+
+// Formata a hora de HH:mm:ss para HH:mm
+function formatarHora(hora) {
+    return hora.substring(0, 5);
 }
 
 // Retorna um badge colorido conforme o status do agendamento
