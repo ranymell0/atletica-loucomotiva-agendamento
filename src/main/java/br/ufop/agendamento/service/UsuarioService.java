@@ -39,6 +39,8 @@ public class UsuarioService {
             usuario.setEmail(usuarioAtualizado.getEmail());
             usuario.setSenha(usuarioAtualizado.getSenha());
             usuario.setPerfil(usuarioAtualizado.getPerfil());
+            usuario.setFuncao(usuarioAtualizado.getFuncao());
+            usuario.setEsportes(usuarioAtualizado.getEsportes());
             return usuarioRepository.save(usuario);
         });
     }

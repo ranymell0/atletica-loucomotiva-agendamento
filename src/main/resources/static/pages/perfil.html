@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Atlética Loucomotiva</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f5f5f5;">
+
+<!-- Navbar - barra de navegação superior -->
+<nav class="navbar navbar-expand-lg px-4 py-3">
+    <a class="navbar-brand" href="dashboard.html">
+        <img src="../images/logo.png" alt="Logo" style="width: 40px; margin-right: 8px;">
+        LOUCOMOTIVA
+    </a>
+    <div class="ms-auto d-flex align-items-center gap-3">
+        <!-- Nome do usuário logado com link para o perfil -->
+        <a href="perfil.html" class="text-white text-decoration-none" id="nomeUsuario"></a>
+        <!-- Botão de novo agendamento -->
+        <a href="agendamento.html" class="btn btn-atletica btn-sm">+ Novo Agendamento</a>
+        <!-- Botão de histórico -->
+        <a href="historico.html" class="btn btn-outline-light btn-sm">Histórico</a>
+        <!-- Botão de logout -->
+        <a href="login.html" onclick="logout()" class="btn btn-outline-light btn-sm">Sair</a>
+    </div>
+</nav>
+
+<div class="container py-4">
+
+    <!-- Cabeçalho da página -->
+    <div class="mb-4">
+        <a href="dashboard.html" class="text-muted text-decoration-none">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+        <h4 class="fw-bold mb-0 mt-1">Meu Perfil</h4>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Card de informações do perfil -->
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <!-- Avatar com inicial do nome -->
+                <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+                     style="width: 80px; height: 80px; background-color: #8B0000;">
+                    <span class="text-white fw-bold" style="font-size: 2rem;" id="avatarInicial"></span>
+                </div>
+                <h5 class="fw-bold" id="perfilNome"></h5>
+                <p class="text-muted mb-1" id="perfilEmail"></p>
+                <!-- Função na atlética -->
+                <p class="text-muted mb-2" id="perfilFuncao"></p>
+                <!-- Badge de perfil -->
+                <span id="perfilBadge" class="badge mb-2"></span>
+                <!-- Modalidades do usuário -->
+                <div id="perfilEsportes" class="mt-2"></div>
+            </div>
+        </div>
+
+        <!-- Card de edição do perfil -->
+        <div class="col-md-8">
+            <div class="card p-4">
+                <h5 class="fw-bold mb-4">Editar Informações</h5>
+
+                <!-- Área para exibir mensagens de erro ou sucesso -->
+                <div id="mensagem"></div>
+
+                <!-- Campo de nome -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nome</label>
+                    <input type="text" id="nome" class="form-control">
+                </div>
+
+                <!-- Campo de e-mail -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">E-mail</label>
+                    <input type="email" id="email" class="form-control">
+                </div>
+
+                <!-- Campo de nova senha -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nova Senha <span class="text-muted fw-normal">(deixe em branco para manter)</span></label>
+                    <input type="password" id="novaSenha" class="form-control" placeholder="••••••••">
+                </div>
+
+                <!-- Seleção da função na atlética -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Função na Atlética</label>
+                    <select id="funcao" class="form-select">
+                        <option value="Atleta">Atleta</option>
+                        <option value="Presidente/Vice">Presidente/Vice</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Financeiro">Financeiro</option>
+                        <option value="Esportivo">Esportivo</option>
+                        <option value="E-Sports">E-Sports</option>
+                        <option value="Relações Públicas">Relações Públicas</option>
+                        <option value="Eventos">Eventos</option>
+                        <option value="Produtos">Produtos</option>
+                    </select>
+                </div>
+
+                <!-- Seleção das modalidades esportivas -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Modalidades Esportivas</label>
+                    <p class="text-muted small mb-2">Selecione todas as modalidades que você pratica</p>
+                    <!-- Checkboxes preenchidos dinamicamente pelo perfil.js -->
+                    <div id="checkboxEsportes" class="d-flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Botão de salvar -->
+                <button onclick="salvar()" class="btn btn-atletica">
+                    <i class="bi bi-check-lg"></i> Salvar Alterações
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script do perfil -->
+<script src="../js/perfil.js"></script>
+</body>
+</html>

@@ -2,11 +2,13 @@ package br.ufop.agendamento.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -22,6 +24,19 @@ public class Usuario {
 
     @Column(nullable = false)
     private String perfil;
+
+    // Função do usuário na atlética
+    @Column
+    private String funcao = "Atleta";
+
+    // Modalidades esportivas do usuário
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_esporte",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "esporte_id")
+    )
+    private List<Esporte> esportes;
 
     @Column(name = "criado_em")
     private LocalDateTime criadoEm = LocalDateTime.now();
@@ -42,7 +57,12 @@ public class Usuario {
     public String getPerfil() { return perfil; }
     public void setPerfil(String perfil) { this.perfil = perfil; }
 
+    public String getFuncao() { return funcao; }
+    public void setFuncao(String funcao) { this.funcao = funcao; }
+
+    public List<Esporte> getEsportes() { return esportes; }
+    public void setEsportes(List<Esporte> esportes) { this.esportes = esportes; }
+
     public LocalDateTime getCriadoEm() { return criadoEm; }
     public void setCriadoEm(LocalDateTime criadoEm) { this.criadoEm = criadoEm; }
 }
-
