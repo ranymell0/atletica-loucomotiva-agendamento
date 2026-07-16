@@ -29,6 +29,12 @@ public class Usuario {
     @Column
     private String funcao = "Atleta";
 
+    // Código de administrador informado no cadastro.
+    // Não é persistido no banco: existe só durante a requisição,
+    // pra o Service decidir o perfil (ADMIN ou ATLETA) do lado do servidor.
+    @Transient
+    private String codigoAdmin;
+
     // Modalidades esportivas do usuário
     @ManyToMany
     @JoinTable(
@@ -59,6 +65,9 @@ public class Usuario {
 
     public String getFuncao() { return funcao; }
     public void setFuncao(String funcao) { this.funcao = funcao; }
+
+    public String getCodigoAdmin() { return codigoAdmin; }
+    public void setCodigoAdmin(String codigoAdmin) { this.codigoAdmin = codigoAdmin; }
 
     public List<Esporte> getEsportes() { return esportes; }
     public void setEsportes(List<Esporte> esportes) { this.esportes = esportes; }

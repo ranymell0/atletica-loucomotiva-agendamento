@@ -1,12 +1,15 @@
 package br.ufop.agendamento.controller;
 
+import br.ufop.agendamento.exception.AgendamentoInvalidoException;
 import br.ufop.agendamento.model.Agendamento;
 import br.ufop.agendamento.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 // Controller responsável pelas rotas de agendamentos
@@ -34,16 +37,25 @@ public class AgendamentoController {
 
     // Cria um novo agendamento
     @PostMapping
-    public Agendamento criar(@RequestBody Agendamento agendamento) {
-        return agendamentoService.salvar(agendamento);
+    public ResponseEntity<?> criar(@RequestBody Agendamento agendamento) {
+        try {
+            Agendamento salvo = agendamentoService.salvar(agendamento);
+            return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+        } catch (AgendamentoInvalidoException e) {
+            return ResponseEntity.badRequest().body(Map.of("erro", e.getMessage()));
+        }
     }
 
     // Atualiza um agendamento existente
     @PutMapping("/{id}")
-    public ResponseEntity<Agendamento> atualizar(@PathVariable UUID id, @RequestBody Agendamento agendamentoAtualizado) {
-        return agendamentoService.atualizar(id, agendamentoAtualizado)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> atualizar(@PathVariable UUID id, @RequestBody Agendamento agendamentoAtualizado) {
+        try {
+            return agendamentoService.atualizar(id, agendamentoAtualizado)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        } catch (AgendamentoInvalidoException e) {
+            return ResponseEntity.badRequest().body(Map.of("erro", e.getMessage()));
+        }
     }
 
     // Confirma um agendamento pendente

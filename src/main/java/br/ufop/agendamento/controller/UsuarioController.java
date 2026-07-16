@@ -1,12 +1,15 @@
 package br.ufop.agendamento.controller;
 
+import br.ufop.agendamento.exception.EmailDuplicadoException;
 import br.ufop.agendamento.model.Usuario;
 import br.ufop.agendamento.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 // Controller responsável pelas rotas de usuários
@@ -34,16 +37,27 @@ public class UsuarioController {
 
     // Cria um novo usuário
     @PostMapping
-    public Usuario criar(@RequestBody Usuario usuario) {
-        return usuarioService.salvar(usuario);
+    public ResponseEntity<?> criar(@RequestBody Usuario usuario) {
+        try {
+            Usuario salvo = usuarioService.salvar(usuario);
+            return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+        } catch (EmailDuplicadoException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("erro", e.getMessage()));
+        }
     }
 
     // Atualiza um usuário existente
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizar(@PathVariable UUID id, @RequestBody Usuario usuarioAtualizado) {
-        return usuarioService.atualizar(id, usuarioAtualizado)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> atualizar(@PathVariable UUID id, @RequestBody Usuario usuarioAtualizado) {
+        try {
+            return usuarioService.atualizar(id, usuarioAtualizado)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        } catch (EmailDuplicadoException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("erro", e.getMessage()));
+        }
     }
 
     // Remove um usuário pelo ID

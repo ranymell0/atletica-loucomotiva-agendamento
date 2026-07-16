@@ -1,6 +1,5 @@
 // Função chamada ao clicar no botão Cadastrar
 function cadastrar() {
-
     // Recupera os valores dos campos
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
@@ -13,13 +12,14 @@ function cadastrar() {
         return;
     }
 
-    // Define o perfil conforme o código de administrador
-    // Código correto -> ADMIN, caso contrário -> ATLETA
+    // O perfil (ADMIN ou ATLETA) não é mais decidido aqui.
+    // O backend recebe o código informado e decide sozinho o perfil correto,
+    // ignorando qualquer valor de perfil vindo do cliente.
     const usuario = {
         nome: nome,
         email: email,
         senha: senha,
-        perfil: codigoAdmin === 'LOUCOUFOP' ? 'ADMIN' : 'ATLETA'
+        codigoAdmin: codigoAdmin
     };
 
     // Envia os dados para a API via POST
@@ -33,11 +33,12 @@ function cadastrar() {
         .then(response => {
             if (response.ok) {
                 mostrarMensagem('Cadastro realizado com sucesso!', 'success');
-
                 // Redireciona para o login após 1.5 segundos
                 setTimeout(() => {
                     window.location.href = 'login.html';
                 }, 1500);
+            } else if (response.status === 409) {
+                mostrarMensagem('Já existe uma conta com esse e-mail.', 'danger');
             } else {
                 mostrarMensagem('Erro ao realizar cadastro. Tente novamente.', 'danger');
             }
