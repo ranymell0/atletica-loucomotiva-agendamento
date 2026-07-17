@@ -68,3 +68,5 @@ Protótipos para as páginas de Login, Dashboard, Agendamento, Agenda Semanal, G
 ## 5. Referências
 
 JOHNSON, Rod; HOELLER, Juergen. *Spring Framework Reference Documentation*. Disponível em: https://docs.spring.io/spring-framework/reference/. Acesso em: maio 2026.
+
+SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson Education do Brasil, 2019.
