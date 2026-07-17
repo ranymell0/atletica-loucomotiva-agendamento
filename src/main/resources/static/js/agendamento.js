@@ -9,6 +9,11 @@ if (!usuario) {
 // Exibe o nome do usuário na navbar
 document.getElementById('nomeUsuario').textContent = usuario.nome;
 
+// Define para onde a página deve voltar/redirecionar conforme o perfil de quem está logado
+const paginaDashboard = usuario.perfil === 'ADMIN' ? 'dashboard-admin.html' : 'dashboard.html';
+document.getElementById('linkLogo').setAttribute('href', paginaDashboard);
+document.getElementById('linkVoltar').setAttribute('href', paginaDashboard);
+
 // Remove o usuário do localStorage ao sair
 function logout() {
     localStorage.removeItem('usuarioLogado');
@@ -171,9 +176,9 @@ function agendar() {
         .then(response => {
             if (response.ok) {
                 mostrarMensagem('Agendamento realizado com sucesso!', 'success');
-                // Redireciona para o dashboard após 2 segundos
+                // Redireciona para o dashboard correto (admin ou atleta) após 2 segundos
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
+                    window.location.href = paginaDashboard;
                 }, 2000);
             } else {
                 mostrarMensagem('Erro ao realizar agendamento. Tente novamente.', 'danger');
