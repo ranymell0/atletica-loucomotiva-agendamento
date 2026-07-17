@@ -47,6 +47,22 @@ Neste trabalho não serão considerados:
 
 Protótipos para as páginas de Login, Dashboard, Agendamento, Agenda Semanal, Gerenciamento de Espaços, Gerenciamento de Usuários, Histórico de Reservas e Perfil do Usuário serão elaborados e poderão ser encontrados neste repositório ao longo do desenvolvimento do projeto.
 
+### Login
+
+![Tela de login](docs/screenshots/login.png)
+
+### Cadastro
+
+![Tela de cadastro](docs/screenshots/cadastro.png)
+
+### Dashboard Administrativo
+
+![Painel administrativo](docs/screenshots/dashboard-admin.png)
+
+### Gerenciamento de Agendamentos
+
+![Gerenciar agendamentos](docs/screenshots/gerenciar-agendamentos.png)
+
 ---
 
 ## 5. Referências
