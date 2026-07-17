@@ -101,3 +101,21 @@ h1, h2, h3, .navbar-brand {
 a {
     text-decoration: none;
 }
+
+/* ===== Página de login: fundo com foto da torcida + efeito de papel rasgado ===== */
+.login-page {
+    position: relative;
+    min-height: 100vh;
+    background-image:
+            linear-gradient(rgba(139, 0, 0, 0.75), rgba(139, 0, 0, 0.75)),
+            url('../images/torcida-fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* Card de login por cima do fundo, maior que o padrão */
+.card-login {
+    position: relative;
+    z-index: 2;
+}

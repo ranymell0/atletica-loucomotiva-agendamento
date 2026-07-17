@@ -70,7 +70,11 @@ public class UsuarioService {
 
             usuario.setNome(usuarioAtualizado.getNome());
             usuario.setEmail(usuarioAtualizado.getEmail());
-            usuario.setSenha(usuarioAtualizado.getSenha());
+            // Só troca a senha se uma nova senha (não vazia) for realmente enviada;
+            // caso contrário, mantém a senha atual do usuário.
+            if (usuarioAtualizado.getSenha() != null && !usuarioAtualizado.getSenha().isBlank()) {
+                usuario.setSenha(usuarioAtualizado.getSenha());
+            }
             usuario.setPerfil(usuarioAtualizado.getPerfil());
             usuario.setFuncao(usuarioAtualizado.getFuncao());
             usuario.setEsportes(usuarioAtualizado.getEsportes());

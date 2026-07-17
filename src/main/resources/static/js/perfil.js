@@ -9,6 +9,15 @@ if (!usuario) {
 // Exibe o nome do usuário na navbar
 document.getElementById('nomeUsuario').textContent = usuario.nome;
 
+// Ajusta a navegação conforme o perfil de quem está logado.
+// Admin volta para o painel administrativo e não vê os botões de atleta.
+if (usuario.perfil === 'ADMIN') {
+    document.getElementById('linkLogo').setAttribute('href', 'dashboard-admin.html');
+    document.getElementById('linkVoltar').setAttribute('href', 'dashboard-admin.html');
+    document.getElementById('btnNovoAgendamento').style.display = 'none';
+    document.getElementById('btnHistorico').style.display = 'none';
+}
+
 // Remove o usuário do localStorage ao sair
 function logout() {
     localStorage.removeItem('usuarioLogado');

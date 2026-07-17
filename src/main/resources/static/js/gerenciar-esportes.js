@@ -38,7 +38,7 @@ function carregarEsportes() {
                 <tr>
                     <td>${e.nome}</td>
                     <td>
-                        <button onclick="editar('${e.id}', '${e.nome}', '${e.descricao || ''}')" class="btn btn-sm btn-outline-secondary me-1">
+                        <button onclick="editar('${e.id}', '${e.nome}')" class="btn btn-sm btn-outline-secondary me-1">
                             <i class="bi bi-pencil"></i> Editar
                         </button>
                         <button onclick="deletar('${e.id}')" class="btn btn-sm btn-outline-danger">
@@ -58,17 +58,15 @@ function abrirModal() {
     document.getElementById('modalTitulo').textContent = 'Novo Esporte';
     document.getElementById('esporteId').value = '';
     document.getElementById('nome').value = '';
-    document.getElementById('descricao').value = '';
     document.getElementById('mensagem').innerHTML = '';
     modal.show();
 }
 
 // Preenche o modal com os dados do esporte para edição
-function editar(id, nome, descricao) {
+function editar(id, nome) {
     document.getElementById('modalTitulo').textContent = 'Editar Esporte';
     document.getElementById('esporteId').value = id;
     document.getElementById('nome').value = nome;
-    document.getElementById('descricao').value = descricao;
     document.getElementById('mensagem').innerHTML = '';
     modal.show();
 }
@@ -77,7 +75,6 @@ function editar(id, nome, descricao) {
 function salvar() {
     const id = document.getElementById('esporteId').value;
     const nome = document.getElementById('nome').value;
-    const descricao = document.getElementById('descricao').value;
 
     // Valida se o nome foi preenchido
     if (!nome) {
@@ -85,7 +82,7 @@ function salvar() {
         return;
     }
 
-    const esporte = { nome, descricao };
+    const esporte = { nome };
 
     // Define o método e a URL conforme cadastro ou edição
     const method = id ? 'PUT' : 'POST';
