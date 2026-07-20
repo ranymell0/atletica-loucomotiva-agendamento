@@ -14,6 +14,11 @@ const paginaDashboard = usuario.perfil === 'ADMIN' ? 'dashboard-admin.html' : 'd
 document.getElementById('linkLogo').setAttribute('href', paginaDashboard);
 document.getElementById('linkVoltar').setAttribute('href', paginaDashboard);
 
+// O atalho de Agenda Semanal só faz sentido para o atleta
+if (usuario.perfil === 'ADMIN') {
+    document.getElementById('btnAgendaSemanal').style.display = 'none';
+}
+
 // Remove o usuário do localStorage ao sair
 function logout() {
     localStorage.removeItem('usuarioLogado');

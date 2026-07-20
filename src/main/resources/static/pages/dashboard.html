@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body style="background-color: #f5f5f5;">
-
 <!-- Navbar - barra de navegação superior -->
 <nav class="navbar navbar-expand-lg px-4 py-3">
     <a class="navbar-brand" href="dashboard.html">
@@ -24,21 +23,20 @@
         <a href="perfil.html" class="text-white text-decoration-none" id="nomeUsuario"></a>
         <!-- Botão para novo agendamento -->
         <a href="agendamento.html" class="btn btn-atletica btn-sm">+ Novo Agendamento</a>
+        <!-- Botão de agenda semanal -->
+        <a href="agenda-semanal.html" class="btn btn-outline-light btn-sm">Agenda Semanal</a>
         <!-- Botão de histórico -->
         <a href="historico.html" class="btn btn-outline-light btn-sm">Histórico</a>
         <!-- Botão de logout -->
         <a href="login.html" onclick="logout()" class="btn btn-outline-light btn-sm">Sair</a>
     </div>
 </nav>
-
 <div class="container py-4">
-
     <!-- Mensagem de boas vindas -->
     <div class="card p-4 mb-4">
         <h4 class="fw-bold">Olá, <span id="nomeBoasVindas"></span>!</h4>
         <p class="text-muted mb-0">Confira seus agendamentos e reserve seu horário de treino.</p>
     </div>
-
     <!-- Cards de resumo dos agendamentos -->
     <div class="row g-3 mb-4">
         <div class="col-md-4">
@@ -60,7 +58,6 @@
             </div>
         </div>
     </div>
-
     <!-- Tabela de agendamentos do usuário -->
     <div class="card p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -88,7 +85,6 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/dashboard.js"></script>
 </body>
